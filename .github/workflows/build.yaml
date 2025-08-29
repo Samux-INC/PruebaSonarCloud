@@ -30,7 +30,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=samux-inc
-            -Dsonar.projectKey=https://sonarcloud.io/project/overview?id=Samux-INC_PruebaSonarCloud
+            -Dsonar.projectKey=Samux-INC_PruebaSonarCloud
             -Dsonar.python.version=3.11
             -Dsonar.sources=.
 
