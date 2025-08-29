@@ -1,0 +1,31 @@
+name: Bandit Security Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Bandit
+        run: |
+          pip install bandit
+
+      - name: Run Bandit
+        run: |
+          # Ejecuta el análisis y genera reporte
+          bandit -r . -f txt -o bandit-report.txt || true
+          echo "========== BANDIT SECURITY REPORT =========="
+          cat bandit-report.txt
+          echo "==========================================="
