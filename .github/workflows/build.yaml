@@ -32,5 +32,5 @@ jobs:
             -Dsonar.organization=samux-inc
             -Dsonar.projectKey=Samux-INC_PruebaSonarCloud
             -Dsonar.python.version=3.11
-            -Dsonar.sources=.
+            -Dsonar.sources=. 
 
