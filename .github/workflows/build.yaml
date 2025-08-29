@@ -26,3 +26,11 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          args: >
+            -Dsonar.organization=samux-inc
+            -Dsonar.projectKey=https://sonarcloud.io/project/overview?id=Samux-INC_PruebaSonarCloud
+            -Dsonar.python.version=3.11
+            -Dsonar.sources=.
+
