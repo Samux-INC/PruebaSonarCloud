@@ -20,15 +20,21 @@ jobs:
 
       - name: Install Bandit
         run: |
+          python -m pip install --upgrade pip
           pip install bandit
 
-      - name: Run Bandit
+      - name: Run Bandit (generate report)
         run: |
-          # Ejecuta el análisis y guarda un reporte en txt
+          # Genera el reporte en texto; no detener el job si hay issues
           bandit -r . -f txt -o bandit-report.txt || true
+          # Mostrar por logs (opcional, útil para ver resultados en la UI)
+          echo "========== BANDIT REPORT BEGIN =========="
+          cat bandit-report.txt || true
+          echo "=========== BANDIT REPORT END ==========="
 
       - name: Upload Bandit Report
-        uses: actions/upload-artifact@v3
+        if: always()                    # fuerza la subida aunque algún paso previo falle
+        uses: actions/upload-artifact@v4
         with:
           name: bandit-report
           path: bandit-report.txt
