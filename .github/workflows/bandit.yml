@@ -24,8 +24,11 @@ jobs:
 
       - name: Run Bandit
         run: |
-          # Ejecuta el análisis y genera reporte
+          # Ejecuta el análisis y guarda un reporte en txt
           bandit -r . -f txt -o bandit-report.txt || true
-          echo "========== BANDIT SECURITY REPORT =========="
-          cat bandit-report.txt
-          echo "==========================================="
+
+      - name: Upload Bandit Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: bandit-report
+          path: bandit-report.txt
